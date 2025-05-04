@@ -5,7 +5,8 @@
         "name": "Dark Blue Plaid Golf Shirt",
         "price": 54.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Dark blue plaid, the adidas logo on the front, and white striping around the collar, sleeves, and waist make this shirt a great choice for the price."
+        "description": "Dark blue plaid, the adidas logo on the front, and white striping around the collar, sleeves, and waist make this shirt a great choice for the price.",
+        "image": "Adidas.png"
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "name": "Red And Black Striped Golf Shirt",
         "price": 99.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "A classic red golf shirt with black stripes throughout made with super soft fabric."
+        "description": "A classic red golf shirt with black stripes throughout made with super soft fabric.",
+        "image": "dunning.png"
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "name": "Lavender Golf Shirt",
         "price": 104.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "A light purple shirt featuring a higher collar, and the Eastside Golf logo on the front."
+        "description": "A light purple shirt featuring a higher collar, and the Eastside Golf logo on the front.",
+        "image": "Eastside-Golf.png"
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "name": "White Golf Shirt",
         "price": 99.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "An ultra soft, incredibly clean solid white golf shirt from GFore."
+        "description": "An ultra soft, incredibly clean solid white golf shirt from GFore.",
+        "image": "gfore.png"
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "name": "Orange and Black Patterned Golf Shirt",
         "price": 104.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Featuring a pattern and color scheme like a Lion, this golf shirt is sure to turn heads."
+        "description": "Featuring a pattern and color scheme like a Lion, this golf shirt is sure to turn heads.",
+        "image": "j-lindeberg.png"
     },
     {
         "id": 6,
@@ -45,7 +50,8 @@
         "name": "Yellow Golf Shirt",
         "price": 89.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Simple, breatheable yellow golf shirt featuring the Manors logo on the front."
+        "description": "Simple, breatheable yellow golf shirt featuring the Manors logo on the front.",
+        "image": "manors.png"
     },
     {
         "id": 7,
@@ -53,7 +59,8 @@
         "name": "Pink Patterned Golf Shirt",
         "price": 109.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Slim fitting and attention grabbing with black crosses making the pattern on this great pink golf shirt."
+        "description": "Slim fitting and attention grabbing with black crosses making the pattern on this great pink golf shirt.",
+        "image": "ralph-lauren.png"
     },
     {
         "id": 8,
@@ -61,7 +68,8 @@
         "name": "White Patterned Golf Shirt",
         "price": 109.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Lightweight and breathable golf shirt with beautiful red and orange floral pattern."
+        "description": "Lightweight and breathable golf shirt with beautiful red and orange floral pattern.",
+        "image": "swannies.png"
     },
     {
         "id": 9,
@@ -69,6 +77,7 @@
         "name": "Grey Golf Shirt",
         "price": 99.99,
         "sizes": ["S", "M", "L", "XL"],
-        "description": "Light grey Reigning Champ golf shirt made with ultra breatheable proprietery fabric blend."
+        "description": "Light grey Reigning Champ golf shirt made with ultra breatheable proprietery fabric blend.",
+        "image": "reigning-champ.png"
     }
-]
+] 
