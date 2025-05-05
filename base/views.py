@@ -34,9 +34,27 @@ def home(request):
     return render(request, 'home.html', {'products': products, 'sort': sort})
 
 def cart(request):
-    return render(request, 'cart.html')
-def thanks(request):
-    return render(request, 'thanks.html')
+    cart = request.session.get('cart', {})
+    json_path = os.path.join(settings.BASE_DIR, 'base', 'data', 'products.json')
+    with open(json_path, 'r') as file:
+        products = json.load(file)
+    cart_items = []
+    total = 0
+
+    for cart_key, item in cart.items():
+        product_id = item['product_id']
+        product = None
+        for x in products:
+            if str(x['id']) == product_id:
+                product = x
+                break
+        if product is not None:
+            subtotal = float(product['price']) * float(item['quantity'])
+            cart_items.append({
+                'id': product_id, 'name': product['name'], 'image': product['image'], 'size': item['size'], 'quantity': item['quantity'], 'price': product['price'], 'subtotal': subtotal
+            })
+        total += subtotal
+    return render(request, 'cart.html', {'cart_items': cart_items, 'total': total})
 
 def register(request):
     if request.method == 'POST':
@@ -86,3 +104,81 @@ def loginRegister(request):
 def logout(request):
     request.session.flush()
     return redirect('homeURL')
+
+def add_to_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        size = request.POST.get('size')
+        quantity = request.POST.get('quantity', 1)
+
+        cart = request.session.get('cart', {})
+        cart_key = f"{product_id}_{size}"
+
+        if cart_key in cart:
+            cart[cart_key]['quantity'] += quantity
+        else:
+            cart[cart_key] = {
+                'product_id': product_id,
+                'size': size,
+                'quantity': quantity
+            }
+        request.session['cart'] = cart
+        request.session.modified = True
+        messages.success(request, 'Item added to cart!')
+    return redirect('homeURL')
+
+def remove_from_cart(request, product_id):
+    cart = request.session.get('cart', {})
+    for key in list(cart.keys()):
+        if cart[key]['product_id'] == product_id:
+            del cart[key]
+            break
+    request.session['cart'] = cart
+    request.session.modified = True
+
+    return redirect('cartURL')
+
+def update_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        quantity = int(request.POST.get('quantity', 1))
+
+        cart = request.session.get('cart', {})
+
+        for key in cart:
+            if cart[key]['product_id'] == product_id:
+                if quantity > 0:
+                    cart[key]['quantity'] = quantity
+                else:
+                    del cart[key]
+                break
+        request.session['cart'] = cart
+        request.session.modified = True
+
+        return redirect('cartURL')
+    
+def thanks(request):
+    ordered_items = []
+    total = 0
+
+    if request.method == 'POST':
+        cart = request.session.get('cart', {})
+        json_path = os.path.join(settings.BASE_DIR, 'base', 'data', 'products.json')
+        with open(json_path, 'r') as file:
+            products = json.load(file)
+
+        for cart_key, item in cart.items():
+            product_id = item['product_id']
+            product = None
+            for x in products:
+                if str(x['id']) == product_id:
+                    product = x
+                    break
+            if product is not None:
+                subtotal = float(product['price']) * float(item['quantity'])
+                ordered_items.append({'id': product_id, 'name': product['name'], 'image': product['image'], 'size': item['size'], 'quantity': item['quantity'], 'price': product['price'], 'subtotal': subtotal })
+                total += subtotal
+        request.session['cart'] = {}
+        request.session.modified = True
+
+    return render(request, 'thanks.html', {'ordered_items':ordered_items, 'total': total})

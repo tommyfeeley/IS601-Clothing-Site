@@ -2,17 +2,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'stylesheets/thanks.css' %}">
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    
-    <h1>thank you template </h1>
-    <h2>this is using html code</h2>
-    <h3>located in the templates folder</h3>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <a href="{% url 'homeURL' %}"> <img src="{% static 'images/logo-no-plaid.png' %}" alt="Plaid Palace Logo" style="max-height: 100px;"></a>
+<div class="container mt-5">
+  <div class="text-center mb-4">
+    <h2>Thank you for your order!</h2>
+    <p class="text-muted">Your order has been placed successfully.</p>
+  </div>
+
+  <table class="table table-striped">
+    <thead class="table-light">
+      <tr>
+        <th>Product</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in ordered_items %}
+      <tr>
+        <td>
+          <img src="{% static 'images/' %}{{ item.image }}" alt="{{ item.name }}" width="50" class="me-2">
+          {{ item.name }}
+        </td>
+        <td>{{ item.size }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ item.subtotal }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h4 class="text-end mt-4">Total Paid: ${{ total }}</h4>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'homeURL' %}" class="btn btn-primary">Continue Shopping</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

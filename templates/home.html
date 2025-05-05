@@ -73,16 +73,19 @@
               <p class="card-text"><strong>${{ product.price }}</strong></p>
 
               <label class="form-label">Size:</label>
-              <select class="form-select mb-2">
-                  {% for size in product.sizes %}
-                  <option>{{ size }}</option>
-                  {% endfor %}
-              </select>
-
-              <label class="form-label">Qty:</label>
-              <input type="number" class="form-control mb-2 quantity" value="1" min="1">
-
-              <button class="btn btn-primary add-to-cart mt-auto">Add to Cart</button>
+              <form method="POST" action="{% url 'add_to_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <label class="form-label">Size:</label>
+                <select name="size" class="form-select mb-2">
+                    {% for size in product.sizes %}
+                    <option>{{ size }}</option>
+                    {% endfor %}
+                </select>
+                <label class="form-label">Qty:</label>
+                <input type="number" name="quantity" class="form-control mb-2 quantity" value="1" min="1">
+                <button type="submit" class="btn btn-primary add-to-cart mt-auto">Add to Cart</button>
+            </form>
             </div>
           </div>
         </div>
