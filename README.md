@@ -1,2 +1,2 @@
 # IS601-Clothing-Site
-Clothing Site using HTML, CSS, JS, Django (Python), Bootstrap, Git &amp; maybe more. 
+Clothing Site using HTML, CSS, Django (Python), Bootstrap, Git, bubble sort, JSON. 
