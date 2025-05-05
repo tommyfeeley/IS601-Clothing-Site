@@ -28,15 +28,20 @@
         
         
       </nav>
-   <h1>Login Page:</h1>
-    <div>
+   <h1 style="display: flex; justify-content: center;">Login Page</h1>
+    <div style="display: flex; justify-content: center; padding-top: 20px;">
         <form method="POST" action="">
             {% csrf_token %}
-            <label>Username: </label>
-            <input type="text" name="username" placeholder="Enter username: ">
-            <label>Password: </label>
-            <input type="password" name="password" placeholder="Enter password: ">
-            <input type="submit" value="Login">
+            <div class="mb-2">
+                <label>Username: </label>
+                <input type="text" name="username" placeholder="Enter username: ">
+                </div>
+                
+                <div class="mb-2" style="padding-top: 20px; margin-left: 4px;">
+                <label>Password: </label>
+                <input type="password" name="password" placeholder="Enter password: ">
+                </div>
+                <input type="submit" value="Login" class="btn btn-primary">
         </form>
     </div>
     {% if messages %}

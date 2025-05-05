@@ -19,6 +19,27 @@ def thanks(request):
     return render(request, 'thanks.html')
 
 def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        json_path = os.path.join(settings.BASE_DIR, 'base', 'data', 'accounts.json')
+        with open(json_path, 'r') as file:
+            accounts = json.load(file)
+        found = False
+        for account in accounts:
+            if account['username'] == username:
+                messages.error(request, 'Username already taken.')
+                return render(request, 'register.html')
+        new_user = {
+            'username': username, 'password': password
+                    } 
+        accounts.append(new_user)
+
+        with open(json_path, 'w') as file:
+            json.dump(accounts, file, indent=5)
+        messages.success(request, 'Account created!')
+        return redirect('realLoginURL')
     return render(request, 'register.html')
 
 def loginRegister(request):
@@ -26,10 +47,19 @@ def loginRegister(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
+        json_path = os.path.join(settings.BASE_DIR, 'base', 'data', 'accounts.json')
+        with open(json_path, 'r') as file:
+            accounts = json.load(file)
+        
+        user = None
+        for account in accounts:
+            if account['username'] == username and account['password'] == password:
+                user = account
+                break
+        
 
         if user is not None:
-            login(request, user)
+            request.session['username'] = username
             return redirect('homeURL')
         else:
             messages.error(request, 'Invalid username or password.')

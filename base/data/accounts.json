@@ -1,6 +1,18 @@
 [
-    {
-        "username": "tommy",
-        "password": "password"
-    }
+     {
+          "username": "tommy",
+          "password": "password"
+     },
+     {
+          "username": "robert",
+          "password": "xbox"
+     },
+     {
+          "username": "donald",
+          "password": "trump"
+     },
+     {
+          "username": "hi",
+          "password": "guys"
+     }
 ]
