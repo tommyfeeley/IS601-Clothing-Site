@@ -12,7 +12,27 @@ def home(request):
     json_path = os.path.join(settings.BASE_DIR, 'base','data', 'products.json')
     with open(json_path, 'r') as file:
         products = json.load(file)
-    return render(request, 'home.html', {'products': products})
+
+    sort = request.GET.get('sort')
+
+    if sort == 'ascending':
+        for x in range(len(products)):
+            for y in range(len(products) - 1):
+                if products[y]['price'] > products[y+1]['price']:
+                    temp_var = products[y]
+                    products[y] = products[y + 1] 
+                    products[y+1] = temp_var
+
+    elif sort == 'descending':
+        for x in range(len(products)):
+            for y in range(len(products) - 1):
+                if products[y]['price'] < products[y+1]['price']:
+                    temp_var = products[y]
+                    products[y] = products[y + 1] 
+                    products[y+1] = temp_var
+
+    return render(request, 'home.html', {'products': products, 'sort': sort})
+
 def cart(request):
     return render(request, 'cart.html')
 def thanks(request):
@@ -31,9 +51,7 @@ def register(request):
             if account['username'] == username:
                 messages.error(request, 'Username already taken.')
                 return render(request, 'register.html')
-        new_user = {
-            'username': username, 'password': password
-                    } 
+        new_user = { 'username': username, 'password': password } 
         accounts.append(new_user)
 
         with open(json_path, 'w') as file:
@@ -65,3 +83,6 @@ def loginRegister(request):
             messages.error(request, 'Invalid username or password.')
 
     return render(request, 'loginRegister.html')
+def logout(request):
+    request.session.flush()
+    return redirect('homeURL')

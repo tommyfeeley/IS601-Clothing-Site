@@ -14,8 +14,15 @@
   <div class="text-center my-4">
     <img src="{% static 'images/logo-no-plaid.png' %}" alt="Plaid Palace Logo" style="max-height: 100px;">
     
-    <h1 class="mt-3">Plaid Palace</h1>
-    <p class="text-muted">Shop stylish golf shirts</p>
+    {% if request.session.username %}
+    
+    <p>Welcome, {{ request.session.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+    
+    {% else %}
+    
+    <p><a href="{% url 'realLoginURL' %}">Login</a> | <a href="{% url 'registerURL' %}">Register</a></p>
+    
+    {% endif %}
   </div>
   
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,18 +36,29 @@
           <a class="nav-link" href="{% url 'realLoginURL'%}">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'registerURL'%}">Register Account</a>
+          <a class="nav-link" href="{% url 'registerURL'%}">Registration</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form class="d-flex">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-sm-0" type="submit" style="padding-left: 15px;">Search</button>
       </form>
     </div>
     <a href="{% url 'cartURL'%}"> <img src="{% static 'images/cart_icon_png.png' %}" alt="Plaid Palace Logo" style="max-height: 75px;"> 
     </a>
     
   </nav>
+
+<div class="container">
+    <form method="GET" action="{% url 'homeURL' %}">
+      <label for="sort">Sort By: </label>
+      <select name="sort" id="sort" class="form-select" onchange="this.form.submit()">
+        <option value="" {% if not sort %}selected{% endif %}>Default</option>
+        <option value="ascending" {% if sort == 'ascending' %}selected{% endif %}>Price: low to high</option>
+        <option value="descending"{% if sort == 'descending' %}selected{% endif %}>Price: high to low</option>
+      </select>
+    </form>
+</div>
 
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
