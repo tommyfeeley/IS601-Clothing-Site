@@ -18,6 +18,9 @@ def cart(request):
 def thanks(request):
     return render(request, 'thanks.html')
 
+def register(request):
+    return render(request, 'register.html')
+
 def loginRegister(request):
     if request.method == 'POST':
         username = request.POST.get('username')
