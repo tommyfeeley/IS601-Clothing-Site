@@ -33,6 +33,13 @@ def home(request):
 
     return render(request, 'home.html', {'products': products, 'sort': sort})
 
+def nav(request):
+    cart_size = 0
+    cart = request.session.get('cart', {})
+    for item in cart.items():
+        cart_size += 1
+    return render(request, 'nav.html', {'cart_size': cart_size})
+
 def cart(request):
     cart = request.session.get('cart', {})
     json_path = os.path.join(settings.BASE_DIR, 'base', 'data', 'products.json')

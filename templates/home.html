@@ -4,8 +4,8 @@
 {% block content %}
 <div class="container">
     <form method="GET" action="{% url 'homeURL' %}">
-      <label for="sort">Sort By: </label>
-      <select name="sort" id="sort" class="form-select" onchange="this.form.submit()">
+      <label for="sort" class="mt-4">Sort By: </label>
+      <select name="sort" id="sort" class="form-select my-4" onchange="this.form.submit()">
         <option value="" {% if not sort %}selected{% endif %}>Default</option>
         <option value="ascending" {% if sort == 'ascending' %}selected{% endif %}>Price: low to high</option>
         <option value="descending"{% if sort == 'descending' %}selected{% endif %}>Price: high to low</option>
@@ -17,7 +17,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
       {% for product in products %}
         <div class="col">
-          <div class="card h-100">
+          <div class="card h-100 border-0 shadow p-3 mb-5 bg-white rounded">
 
             <img src="{% static 'images/' %}{{ product.image }}" class="card-img-top" alt="{{ product.name }}" height="300px" style="object-fit: cover;">
             <div class="card-body d-flex flex-column">
@@ -37,7 +37,7 @@
                 </select>
                 <label class="form-label">Qty:</label>
                 <input type="number" name="quantity" class="form-control mb-2 quantity" value="1" min="1">
-                <button type="submit" class="btn btn-primary add-to-cart mt-auto">Add to Cart</button>
+                <button type="submit" class="btn btn-dark add-to-cart mt-auto text-white">Add to Cart</button>
             </form>
             </div>
           </div>

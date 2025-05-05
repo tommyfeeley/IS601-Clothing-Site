@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plaid Palace</title>
-    <link rel="stylesheet" href="{% static 'stylesheets/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/base.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -21,34 +21,38 @@
         {% else %} 
         {% endif %}
     </div>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: center;">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'realLoginURL'%}">Login</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="{% url 'registerURL'%}">Registration</a>
-            </li>
-        </ul>
-        <form class="d-flex">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-sm-0" type="submit" style="padding-left: 15px;">Search</button>
-        </form>
-        </div>
-        <a href="{% url 'cartURL'%}"> <img src="{% static 'images/cart_icon_png.png' %}" alt="Plaid Palace Logo" style="max-height: 75px;"> 
-        </a>
-        
-    </nav>
-    </body>
+ 
+        <nav class="navbar navbar-expand-lg navbar-light font navbar-custom">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: center; margin-left: 180px;">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="{% url 'homeURL'%}">Home <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'realLoginURL'%}">Login</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="{% url 'registerURL'%}">Registration</a>
+                </li>
+            </ul>
+            <form class="d-flex" style = "margin-left: 20px;">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn my-sm-0 bg-dark text-white" type="submit" style="justify-content: center;">Search</button>
+            </form>
+            
+            </div>
+            
+            <a href="{% url 'cartURL'%}"> <img src="{% static 'images/cart_icon_png.png' %}" alt="Plaid Palace Logo" style="max-height: 75px;"> 
+            </a>
+
+        </nav>
+
         <div class="container">
             {% block content %}
             
             {% endblock %}
         </div>
+    </body>
+        
 </html>

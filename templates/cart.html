@@ -42,8 +42,11 @@
                             {% csrf_token %}
                             <input type="hidden" name="product_id" value="{{ item.id }}">
                             <input type="hidden" name="size" value="{{ item.size }}">
+                            <div class="col-auto">
                             <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control form-control-sm mb-1" style="width: 80px;">
                             <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            </div>
+
                             </form>
                         </td>
                         <td>{{ item.price }}</td>

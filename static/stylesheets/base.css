@@ -1,0 +1,13 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.font {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.navbar-custom {
+    background-color: rgb(214, 190, 158);
+    font-weight: bold;
+}
