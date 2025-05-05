@@ -124,7 +124,6 @@ def add_to_cart(request):
             }
         request.session['cart'] = cart
         request.session.modified = True
-        messages.success(request, 'Item added to cart!')
     return redirect('homeURL')
 
 def remove_from_cart(request, product_id):
